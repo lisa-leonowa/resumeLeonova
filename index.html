@@ -1,1 +1,633 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Резюме Леоновой Елизаветы Александровны, Python-разработчика (Flask, Django, SQL)">
+    <title>Резюме | Леонова Елизавета - Python-разработчик</title>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #3b82f6;
+            --text-dark: #1f2937;
+            --text-light: #4b5563;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+
+        /* Шапка профиля */
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: var(--white);
+            padding: 40px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center top;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            background: #ffffff;
+            flex-shrink: 0;
+        }
+
+        .header-info h1 {
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            line-height: 1.2;
+        }
+
+        .header-info h2 {
+            font-size: 1.3rem;
+            color: #bfdbfe;
+            font-weight: 400;
+            margin-bottom: 15px;
+        }
+
+        .meta-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 0.85rem;
+        }
+
+        .meta-info span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        /* Двухколоночный каркас страницы */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .sidebar-column,
+        .content-column {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            min-width: 0;
+        }
+
+        /* Карточки блоков */
+        .card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid var(--bg-light);
+            padding-bottom: 10px;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .text-block {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .text-block p + p {
+            margin-top: 10px;
+        }
+
+        /* Навыки */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+        }
+
+        .skill-tag:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Список контактов */
+        .contact-list {
+            list-style: none;
+        }
+
+        .contact-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .contact-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-list i {
+            color: var(--primary-color);
+            width: 20px;
+            text-align: center;
+        }
+
+        .contact-list img {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .contact-list a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+            overflow-wrap: anywhere;
+        }
+
+        .contact-list a:hover,
+        .contact-list a:focus-visible {
+            color: var(--primary-color);
+        }
+
+        /* Языки */
+        .lang-list {
+            list-style: none;
+            font-size: 0.95rem;
+        }
+
+        .lang-list li {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 6px 0;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .lang-list li:last-child {
+            border-bottom: none;
+        }
+
+        .lang-level {
+            color: var(--text-light);
+        }
+
+        /* Блок проектов */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .project-card {
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: var(--bg-light);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+
+        .project-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            padding: 6px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            width: fit-content;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+            transition: background 0.2s;
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus-visible {
+            background-color: #1d4ed8;
+        }
+
+        /* Таймлайн (опыт, образование, курсы) */
+        .timeline-item {
+            position: relative;
+            padding-left: 24px;
+            border-left: 2px solid var(--border-color);
+            margin-bottom: 24px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -7px;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .timeline-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin: 2px 0;
+        }
+
+        .timeline-subtitle {
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .timeline-text {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-top: 6px;
+        }
+
+        .timeline-text ul {
+            margin: 6px 0 0 18px;
+        }
+
+        .timeline-text li {
+            margin-bottom: 3px;
+        }
+
+        footer {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            margin-top: 30px;
+        }
+
+        /* Адаптивность под планшеты и мобилки */
+        @media (max-width: 900px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 680px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px 20px;
+            }
+            .header-info h1 {
+                font-size: 1.7rem;
+            }
+            .meta-info {
+                justify-content: center;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .card {
+                padding: 22px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Шапка профиля -->
+    <header>
+        <img src="photo.jpg" alt="Фото: Леонова Елизавета" class="profile-img">
+        <div class="header-info">
+            <h1>Леонова Елизавета Александровна</h1>
+            <h2>Python-разработчик</h2>
+            <div class="meta-info">
+                <span><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Мытищи, Московская область</span>
+                <span><i class="fa-solid fa-user" aria-hidden="true"></i> 23 года</span>
+                <span><i class="fa-solid fa-briefcase" aria-hidden="true"></i> Опыт: 4+ года</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-layout">
+
+        <!-- ЛЕВАЯ КОЛОНКА (Сайдбар) -->
+        <aside class="sidebar-column">
+
+            <!-- Контакты -->
+            <section class="card" aria-labelledby="contacts-title">
+                <h3 class="card-title" id="contacts-title"><i class="fa-solid fa-address-book" aria-hidden="true"></i> Контакты</h3>
+                <ul class="contact-list">
+                    <li>
+                        <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                        <a href="tel:+79299861650">+7 (929) 986-16-50</a>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                        <a href="">lisa.leonowa@yandex.ru</a>
+                    </li>
+                    <li>
+                        <i class="fa-brands fa-github" aria-hidden="true"></i>
+                        <!-- TODO: замените на ссылку на свой профиль -->
+                        <a href="https://github.com/lisa-leonowa" target="_blank" rel="noopener noreferrer">Мой GitHub</a>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Стек & Навыки -->
+            <section class="card" aria-labelledby="skills-title">
+                <h3 class="card-title" id="skills-title"><i class="fa-solid fa-code" aria-hidden="true"></i> Стек & Навыки</h3>
+                <div class="skills-grid">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Flask</span>
+                    <span class="skill-tag">Django</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">SQLite</span>
+                    <span class="skill-tag">MySQL</span>
+                    <span class="skill-tag">MS SQL Server</span>
+                    <span class="skill-tag">ORM</span>
+                    <span class="skill-tag">API</span>
+                    <span class="skill-tag">JSON API</span>
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">GitHub</span>
+                    <span class="skill-tag">HTML5</span>
+                    <span class="skill-tag">CSS3</span>
+                    <span class="skill-tag">Разработка компьютерных игр</span>
+                    <span class="skill-tag">Обучение и развитие</span>
+                    <span class="skill-tag">Дистанционное обучение</span>
+                    <span class="skill-tag">Документооборот</span>
+                </div>
+            </section>
+
+            <!-- Языки -->
+            <section class="card" aria-labelledby="lang-title">
+                <h3 class="card-title" id="lang-title"><i class="fa-solid fa-language" aria-hidden="true"></i> Языки</h3>
+                <ul class="lang-list">
+                    <li><span>Русский</span> <span class="lang-level">Родной</span></li>
+                    <li><span>Английский</span> <span class="lang-level">A2, элементарный</span></li>
+                </ul>
+            </section>
+
+            <!-- Условия работы -->
+            <section class="card" aria-labelledby="conditions-title">
+                <h3 class="card-title" id="conditions-title"><i class="fa-solid fa-handshake" aria-hidden="true"></i> Условия</h3>
+                <div class="text-block">
+                    <p>Занятость: полная, частичная, стажировка.</p>
+                    <p>Формат: на месте работодателя.</p>
+                    <p>Готова к переезду и командировкам.</p>
+                    <p>Гражданство: Россия, есть разрешение на работу.</p>
+                </div>
+            </section>
+        </aside>
+
+        <!-- ПРАВАЯ КОЛОНКА -->
+        <div class="content-column">
+
+            <!-- Обо мне -->
+            <section class="card" aria-labelledby="about-title">
+                <h3 class="card-title" id="about-title"><i class="fa-solid fa-user-graduate" aria-hidden="true"></i> Обо мне</h3>
+                <div class="text-block">
+                    <p>Хорошо владею Python и знакома с множеством библиотек. В портфолио есть работы на фреймворках Flask и Django. Знаю MySQL Workbench, SQLite3 и принципы работы ORM. На начальном уровне владею HTML и CSS.</p>
+                    <p>Окончила МТКП МГТУ им. Н. Э. Баумана по специальности 09.02.07 «Информационные системы и программирование» в 2023 году, сдавала демонстрационный экзамен. Сейчас учусь в УрГЭУ. Больше четырёх лет преподаю программирование, робототехнику и разработку игр детям и подросткам.</p>
+                </div>
+            </section>
+
+            <!-- Проекты -->
+            <section class="card" aria-labelledby="projects-title">
+                <h3 class="card-title" id="projects-title"><i class="fa-solid fa-laptop-code" aria-hidden="true"></i> Проекты</h3>
+                <div class="projects-grid">
+                    <article class="project-card">
+                        <div>
+                            <h4 class="project-title">Система управления клиентами ООО «КиберКласс»</h4>
+                            <p class="project-desc">Дипломная работа: программная система для учёта и управления клиентами предприятия.</p>
+                        </div>
+                        <!-- TODO: вставьте ссылку на репозиторий проекта -->
+                        <a class="btn btn-primary" href="https://github.com/lisa-leonowa/diplomProject" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-github" aria-hidden="true"></i> Репозиторий
+                        </a>
+                    </article>
+
+                    <article class="project-card">
+                        <div>
+                            <h4 class="project-title">Решатель алгебраических уравнений</h4>
+                            <p class="project-desc">Курсовая работа: разработка программного модуля для решения алгебраических уравнений.</p>
+                        </div>
+                        <!-- TODO: вставьте ссылку на репозиторий проекта -->
+                        <a class="btn btn-primary" href="https://github.com/lisa-leonowa/kursovaya" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-github" aria-hidden="true"></i> Репозиторий
+                        </a>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Опыт работы -->
+            <section class="card" aria-labelledby="exp-title">
+                <h3 class="card-title" id="exp-title"><i class="fa-solid fa-briefcase" aria-hidden="true"></i> Опыт работы</h3>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Сентябрь 2025 — настоящее время</div>
+                    <div class="timeline-title">Методист</div>
+                    <div class="timeline-subtitle">НОЧУ ДПО МУЦ</div>
+                    <div class="timeline-text">
+                        <ul>
+                            <li>Проверка подписанных договоров и заявок на обучение</li>
+                            <li>Контроль сроков обучения по программам ДПО</li>
+                            <li>Формирование и согласование макетов дипломов, свидетельств и удостоверений, печать на бланках государственного образца</li>
+                            <li>Внесение данных в ФИС ФРДО и Минтруд России</li>
+                            <li>Оформление приказов о зачислении и отчислении, протоколов экзаменов и выписок</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Февраль 2025 — Август 2025</div>
+                    <div class="timeline-title">Учитель информатики</div>
+                    <div class="timeline-subtitle">ГАОУ Школа 548</div>
+                    <div class="timeline-text">Работа с учениками 7-9 классов (базовые, IT и медиаклассы). Дополнительно вела 5 класс: линейные алгоритмы и алгоритмы для олимпиадных задач.</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Март 2024 — Январь 2025</div>
+                    <div class="timeline-title">Педагог дополнительного образования</div>
+                    <div class="timeline-subtitle">МАОУ ДО «Детский технопарк Кванториум»</div>
+                    <div class="timeline-text">
+                        Курсы: гуманоидные роботы, сборка и программирование конструктора RED, разработка компьютерных игр, нейротехнологии в робототехнике (EV3, Bitronics, ZMrobo), интернет вещей (Роботрек, Arduino). Писала собственные программы ДО, проводила мастер-классы.
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Сентябрь 2023 — Март 2024</div>
+                    <div class="timeline-title">Педагог дополнительного образования</div>
+                    <div class="timeline-subtitle">МБОУ СОШ 6</div>
+                    <div class="timeline-text">Преподавала основы программирования на Python, робототехнику, интернет вещей и разработку компьютерных игр.</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Октябрь 2021 — Июнь 2023</div>
+                    <div class="timeline-title">Преподаватель</div>
+                    <div class="timeline-subtitle">Алгоритмика</div>
+                    <div class="timeline-text">Обучала детей 8-14 лет графическому дизайну, визуальному программированию, геймдизайну и Python. Отслеживала успеваемость, объясняла новые темы и разбирала сложности вместе с учеником.</div>
+                </div>
+            </section>
+
+            <!-- Образование -->
+            <section class="card" aria-labelledby="edu-title">
+                <h3 class="card-title" id="edu-title"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Образование</h3>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Выпуск 2027</div>
+                    <div class="timeline-title">Информатика и вычислительная техника (бакалавр)</div>
+                    <div class="timeline-subtitle">Уральский государственный экономический университет, Центр дистанционного образования, Екатеринбург</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2023</div>
+                    <div class="timeline-title">Информационные системы и программирование</div>
+                    <div class="timeline-subtitle">МТКП МГТУ им. Н. Э. Баумана, Москва</div>
+                </div>
+            </section>
+
+            <!-- Курсы -->
+            <section class="card" aria-labelledby="courses-title">
+                <h3 class="card-title" id="courses-title"><i class="fa-solid fa-certificate" aria-hidden="true"></i> Повышение квалификации</h3>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2025</div>
+                    <div class="timeline-title">Теория и методика преподавания информатики в образовательных организациях</div>
+                    <div class="timeline-subtitle">АНО ДПО «ГТУ»</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2024</div>
+                    <div class="timeline-title">Методика преподавания основ образовательной робототехники и программирования</div>
+                    <div class="timeline-subtitle">ООО «Школа Робототехника СПб»</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2024</div>
+                    <div class="timeline-title">Межрегиональный хакатон Тюменской области</div>
+                    <div class="timeline-subtitle">Национальные приоритеты, нейросети</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2023</div>
+                    <div class="timeline-title">Погружение в IT</div>
+                    <div class="timeline-subtitle">ООО «Пульсар Центр»</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2023</div>
+                    <div class="timeline-title">Дополнительное образование детей и взрослых</div>
+                    <div class="timeline-subtitle">АНО ДПО «ГТУ»</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2020</div>
+                    <div class="timeline-title">Python: шаг за шагом</div>
+                    <div class="timeline-subtitle">Яндекс Лицей</div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Леонова Елизавета</p>
+    </footer>
+</div>
+
+</body>
+</html>
